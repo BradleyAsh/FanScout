@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">766436240274-l30ghdpaeq88epukumfe3nb5dg8onj0l.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://fanscout-5157b.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">766436240274</string>
+    <string name="google_api_key" translatable="false">AIzaSyD7dCh8_g1pduqp7D-RBaajs3SdVfrOLeQ</string>
+    <string name="google_app_id" translatable="false">1:766436240274:android:d6f6185903188131186f4b</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyD7dCh8_g1pduqp7D-RBaajs3SdVfrOLeQ</string>
+    <string name="google_storage_bucket" translatable="false">fanscout-5157b.appspot.com</string>
+    <string name="project_id" translatable="false">fanscout-5157b</string>
+</resources>

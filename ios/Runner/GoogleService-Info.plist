@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>766436240274-vk657b2tv0tjgeibnbtf4hag5b81nmpq.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.766436240274-vk657b2tv0tjgeibnbtf4hag5b81nmpq</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>766436240274-8sv7iutlntq1218v9q6s03r400t3hnvv.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDx2f8j76uReJawTppOuRGK_IJdlMzlSiY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>766436240274</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.fanscout.ios.project</string>
+	<key>PROJECT_ID</key>
+	<string>fanscout-5157b</string>
+	<key>STORAGE_BUCKET</key>
+	<string>fanscout-5157b.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:766436240274:ios:d5ae054a700365af186f4b</string>
+	<key>DATABASE_URL</key>
+	<string>https://fanscout-5157b.firebaseio.com</string>
+</dict>
+</plist>
