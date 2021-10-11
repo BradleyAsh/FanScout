@@ -1,0 +1,91 @@
+{
+  "project_info": {
+    "project_number": "766436240274",
+    "firebase_url": "https://fanscout-5157b.firebaseio.com",
+    "project_id": "fanscout-5157b",
+    "storage_bucket": "fanscout-5157b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766436240274:android:d6f6185903188131186f4b",
+        "android_client_info": {
+          "package_name": "com.fanscout.app.project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "766436240274-8i0fdtc975g4snk3unsrts9nqblt58ib.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fanscout.app.project",
+            "certificate_hash": "fd7d6cd74c554fdf3770810054ec907ca51bf09e"
+          }
+        },
+        {
+          "client_id": "766436240274-l30ghdpaeq88epukumfe3nb5dg8onj0l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7dCh8_g1pduqp7D-RBaajs3SdVfrOLeQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "766436240274-l30ghdpaeq88epukumfe3nb5dg8onj0l.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "766436240274-9ul229n7m6o6p5jqm8att01cmlll607f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.FanScout"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766436240274:android:61fd8d392716c86a186f4b",
+        "android_client_info": {
+          "package_name": "com.fanscout.myapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "766436240274-l30ghdpaeq88epukumfe3nb5dg8onj0l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7dCh8_g1pduqp7D-RBaajs3SdVfrOLeQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "766436240274-l30ghdpaeq88epukumfe3nb5dg8onj0l.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "766436240274-9ul229n7m6o6p5jqm8att01cmlll607f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.FanScout"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
