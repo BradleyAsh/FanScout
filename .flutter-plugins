@@ -1,0 +1,13 @@
+# This is a generated file; do not edit or check into version control.
+cloud_firestore=/Users/bradleyash/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-2.4.0/
+cloud_firestore_web=/Users/bradleyash/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-2.3.0/
+firebase_auth=/Users/bradleyash/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-3.0.1/
+firebase_auth_web=/Users/bradleyash/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_web-3.0.0/
+firebase_core=/Users/bradleyash/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-1.4.0/
+firebase_core_web=/Users/bradleyash/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-1.1.0/
+flutter_facebook_login=/Users/bradleyash/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_facebook_login-3.0.0/
+flutter_keyboard_visibility=/Users/bradleyash/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_keyboard_visibility-5.0.3/
+flutter_keyboard_visibility_web=/Users/bradleyash/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_keyboard_visibility_web-2.0.0/
+google_sign_in=/Users/bradleyash/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in-5.0.5/
+google_sign_in_web=/Users/bradleyash/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in_web-0.10.0+1/
+twitter_login=/Users/bradleyash/flutter/.pub-cache/hosted/pub.dartlang.org/twitter_login-4.0.1/
