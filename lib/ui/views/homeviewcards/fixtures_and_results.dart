@@ -132,13 +132,13 @@ class _FixturesCardWidget extends State<FixturesCardWidget> {
           .collection('Fixtures')
           .where('event_date', isGreaterThan: dayStart)
           .where('event_date', isLessThan: dayEnd)
-          .where('league.id', isEqualTo: 41)
+          .where('league.id', isEqualTo: 39)
           .snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) return new Text('Error: ${snapshot.error}');
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
-            return new Text('Loading now...');
+            return new Text('Loading');
           default:
             return new ListView(
               children: snapshot.data.docs.map((DocumentSnapshot document) {
@@ -157,9 +157,7 @@ class _FixturesCardWidget extends State<FixturesCardWidget> {
 
     Map<dynamic, dynamic> homeTeam = fixture['teams']['home'];
     Map<dynamic, dynamic> awayTeam = fixture['teams']['away'];
-    print("HT" + homeTeam.toString());
     String eventDate = fixture['event_date'];
-    Map<dynamic, dynamic> league = fixture['league']['id'];
     int goalsHT = fixture['goals']['home'];
     int goalsAT = fixture['goals']['away'];
 
@@ -168,14 +166,12 @@ class _FixturesCardWidget extends State<FixturesCardWidget> {
     String kickOff = kickoffdt.toLocal().hour.toString() +
         ':' +
         kickoffdt.toLocal().minute.toString().padLeft(2, '0');
-
     String scoreOrDate = "";
     if (goalsHT != null && goalsAT != null) {
       scoreOrDate = goalsHT.toString() + '-' + goalsAT.toString();
     } else {
       scoreOrDate = kickOff;
     }
-
     return Container(
       padding: EdgeInsets.all(1),
       child: InkWell(
@@ -184,7 +180,7 @@ class _FixturesCardWidget extends State<FixturesCardWidget> {
           children: [
             Container(
               width: 70,
-              child: Text(homeTeam['team_name'], style: cardStyleFixture),
+              child: Text(homeTeam['name'], style: cardStyleFixture),
             ),
             Container(
               width: 30,
@@ -192,7 +188,7 @@ class _FixturesCardWidget extends State<FixturesCardWidget> {
             ),
             Container(
               width: 70,
-              child: Text(awayTeam['team_name'], style: cardStyleFixture),
+              child: Text(awayTeam['name'], style: cardStyleFixture),
             ),
           ],
         ),
