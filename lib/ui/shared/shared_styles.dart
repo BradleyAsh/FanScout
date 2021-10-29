@@ -28,19 +28,20 @@ const TextStyle cardStyleDate =
     const TextStyle(fontSize: 8, color: Colors.cyan);
 const TextStyle cardStyleToday =
     const TextStyle(fontSize: 8, color: Colors.white);
-const TextStyle cardHeader = const TextStyle(fontSize: 14, color: Colors.white);
+const TextStyle cardHeader = const TextStyle(
+    fontSize: 14, color: Colors.white, fontWeight: FontWeight.bold);
 const TextStyle cardHeaderHomwAwayHighlight = const TextStyle(
     fontSize: 14, color: Colors.white, fontWeight: FontWeight.bold);
 const TextStyle cardHeaderHomwAway = const TextStyle(
     fontSize: 14,
     color: Color.fromARGB(255, 44, 179, 163),
     fontWeight: FontWeight.bold);
-const TextStyle cardSubHeader = const TextStyle(
-    fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold);
+const TextStyle cardSubHeader =
+    const TextStyle(fontSize: 12, color: Colors.white);
 const TextStyle cardStyleFixture =
-    const TextStyle(fontSize: 9, color: Colors.white);
+    const TextStyle(fontSize: 12, color: Colors.white);
 const TextStyle cardFixtureText = const TextStyle(
-    fontSize: 9, color: Colors.white, fontStyle: FontStyle.italic);
+    fontSize: 11, color: Colors.white, fontStyle: FontStyle.italic);
 const TextStyle positionStyle =
     const TextStyle(fontSize: 9, color: Colors.white);
 

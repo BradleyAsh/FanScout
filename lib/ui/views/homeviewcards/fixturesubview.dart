@@ -41,7 +41,7 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
         child: Container(
           width: 300,
           height: 440,
-          color: Colors.black87,
+          color: Color.fromARGB(255, 28, 37, 51),
           child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -79,6 +79,7 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
 
   StreamBuilder FixtureDetailsView(int fixtureId) {
     //fixtureId = 157333;
+
     DateTime day = DateTime.now();
     String dayStart = DateFormat("y").format(day) +
         '-' +
@@ -93,8 +94,8 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
         '-' +
         DateFormat("d").format(day.add(Duration(days: 14))).padLeft(2, '0') +
         'T23:59:59';
-    String homeOrAwayTeamField =
-        isHome ? 'homeTeam.team_name' : 'awayTeam.team_name';
+    // String homeOrAwayTeamField =
+    // isHome ? 'homeTeam.team_name' : 'awayTeam.team_name';
 
     print("Fixtureid" + fixtureId.toString());
     Stream queryss = FirebaseFirestore.instance
@@ -143,25 +144,30 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
 
     //print("Fixture Team ID"+ fixture['homeTeam']['team_id'].toString());
 
-    Map<dynamic, dynamic> homeTeam = lineUp['homeTeam'];
-    Map<dynamic, dynamic> awayTeam = lineUp['awayTeam'];
-    String awayTeamFormation = awayTeam['formation'];
-    String homeTeamFormation = homeTeam['formation'];
-    String homeTeamCoach = homeTeam['coach'];
-    String awayTeamCoach = awayTeam['coach'];
+    // Map<dynamic, dynamic> homeTeam = lineUp['homeTeam'];
+    // Map<dynamic, dynamic> awayTeam = lineUp['awayTeam'];
+    // String awayTeamFormation = awayTeam['formation'];
+    // String homeTeamFormation = homeTeam['formation'];
+    // String homeTeamCoach = homeTeam['coach'];
+    // String awayTeamCoach = awayTeam['coach'];
+
+    Map<dynamic, dynamic> Team = lineUp['team'];
+    String Formation = Team['formation'];
 
     return Container(
       padding: EdgeInsets.all(0),
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-        TeamFormationWidget(lineUp, "homeTeam"),
-        TeamFormationWidget(lineUp, 'awayTeam'),
+        // TeamFormationWidget(lineUp, "homeTeam"),
+        // TeamFormationWidget(lineUp, 'awayTeam'),
+        TeamFormationWidget(lineUp, "Team"),
+        TeamFormationWidget(lineUp, 'Team'),
       ]),
     );
   }
 
   Widget TeamFormationWidget(
       Map<dynamic, dynamic> lineUp, String homeOrAwayTeam) {
-    bool isHome = homeOrAwayTeam == 'homeTeam';
+    bool isHome = homeOrAwayTeam == 'Team';
     String formation = lineUp[homeOrAwayTeam]['formation'];
     String manager = lineUp[homeOrAwayTeam]['coach'];
     //print (lineUp[homeOrAwayTeam]['startXI'].where((e) => e['number'] == 29).toString());

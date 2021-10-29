@@ -102,7 +102,7 @@ class HomeView extends StatelessWidget {
               child: InkWell(
                 splashColor: Colors.blue.withAlpha(30),
                 onTap: () {
-                  print('Card tapped.');
+                  print('Card tapped!');
                 },
                 child: Container(
                   width: 300,

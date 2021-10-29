@@ -37,7 +37,7 @@ class FixtureView extends StatelessWidget {
         viewModelBuilder: () => ProfileViewModel(),
         builder: (context, model, child) => Scaffold(
               appBar: AppBar(
-                title: Text(Strings.fanScout),
+                backgroundColor: Color.fromARGB(255, 10, 22, 40),
               ),
               body: _buildFixtureInfo(model, user, fixture),
             ));
@@ -47,26 +47,26 @@ class FixtureView extends StatelessWidget {
     //print("buildFixtureInfo Team ID: " + fixture.toString());
 
     return Container(
-      color: Colors.black,
+      color: Color.fromARGB(255, 10, 22, 40),
       padding: const EdgeInsets.all(6),
       child: Card(
         shape: cardShapeBorder,
         child: InkWell(
-          splashColor: Colors.blue.withAlpha(30),
+          splashColor: Colors.pink,
           onTap: () {
             print('Card tapped.');
           },
           child: Container(
             padding: const EdgeInsets.all(10),
-            color: Colors.black87,
+            color: Color.fromARGB(255, 28, 37, 51),
             child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [Text("Countdown", style: cardHeader)],
-                  ),
+                  // Row(
+                  //  mainAxisAlignment: MainAxisAlignment.center,
+                  //children: [Text("Countdown", style: cardHeader)],
+                  // ),
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                     thisFixture(fixture),
                   ]),
@@ -80,12 +80,12 @@ class FixtureView extends StatelessWidget {
   Widget thisFixture(fixture) {
     final NavigationService _navigationService = locator<NavigationService>();
 
-    Map<dynamic, dynamic> homeTeam = fixture['homeTeam'];
-    Map<dynamic, dynamic> awayTeam = fixture['awayTeam'];
-    String eventDate = fixture['event_date']; //"2020-07-11T14:00:00";
+    Map<dynamic, dynamic> homeTeam = fixture['teams']['home'];
+    Map<dynamic, dynamic> awayTeam = fixture['teams']['away'];
+    String eventDate = fixture['event_date'];
     Map<dynamic, dynamic> league = fixture['league'];
-    String venue = fixture['venue'];
-    String referee = fixture['referee'] ?? "";
+    Map<dynamic, dynamic> venue = fixture['fixture']['venue'];
+    String referee = fixture['fixture']['referee'] ?? "";
     int fixtureId = fixture['fixture_id'];
 
     DateTime today = DateTime.now();
@@ -102,17 +102,18 @@ class FixtureView extends StatelessWidget {
         ':' +
         kickoffdt.toLocal().minute.toString().padLeft(2, '0');
 
-    String fixtureHeader =
-        league['name'] + ' - ' + kickOffDate + ' - ' + kickOff;
+    String homeTeamName = homeTeam['name'].toString();
+    String awayTeamName = awayTeam['name'].toString();
 
-    String homeTeamName = homeTeam['team_name'].toString();
+    String fixtureHeader = homeTeamName + ' vs ' + awayTeamName;
 
     return Container(
       padding: EdgeInsets.all(0),
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text(fixtureHeader, style: cardHeader),
+          Text(fixtureHeader, textAlign: TextAlign.center, style: cardHeader),
         ]),
+        verticalSpaceSmall,
         Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -126,9 +127,7 @@ class FixtureView extends StatelessWidget {
               width: 100,
               child: Column(
                 children: [
-                  Text(homeTeam['team_name'] + " vs " + awayTeam['team_name'],
-                      style: cardSubHeader),
-                  Text(venue, style: cardFixtureText, softWrap: true),
+                  Text(venue['name'], style: cardFixtureText, softWrap: true),
                   Text(kickOffDate, style: cardFixtureText),
                   Text(kickOff, style: cardFixtureText),
                   Text(referee, style: cardFixtureText),
@@ -142,6 +141,7 @@ class FixtureView extends StatelessWidget {
             ),
           ],
         ),
+        verticalSpaceMedium,
         FixtureDetailWidget(fixtureId: fixtureId),
       ]),
     );

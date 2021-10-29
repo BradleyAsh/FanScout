@@ -10,7 +10,7 @@
 		</data>
 		<key>Headers/twitter_login-Swift.h</key>
 		<data>
-		Nr6X3V1ngoVJbyBHASTyTMDDv/A=
+		PjfyQsh747rL202UUd6QGelkqdw=
 		</data>
 		<key>Headers/twitter_login-umbrella.h</key>
 		<data>
@@ -24,6 +24,14 @@
 		<data>
 		+aZkjxe7KhvWiNKazU8X5AgvehM=
 		</data>
+		<key>Modules/twitter_login.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
+		<data>
+		OjE/ZJL2aniiJvipmAwPE6sMbvo=
+		</data>
+		<key>Modules/twitter_login.swiftmodule/Project/arm64.swiftsourceinfo</key>
+		<data>
+		OjE/ZJL2aniiJvipmAwPE6sMbvo=
+		</data>
 		<key>Modules/twitter_login.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
 		dluPetFNXYHfNgCSIWuEqxIKFAk=
@@ -32,13 +40,29 @@
 		<data>
 		dluPetFNXYHfNgCSIWuEqxIKFAk=
 		</data>
+		<key>Modules/twitter_login.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
+		<data>
+		V4fWkL+jJaE51olQa3nCMy6nWOM=
+		</data>
+		<key>Modules/twitter_login.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
+		<data>
+		0VKBhAjfP6QYTNNZz+/YN1U+xsg=
+		</data>
+		<key>Modules/twitter_login.swiftmodule/arm64.swiftdoc</key>
+		<data>
+		V4fWkL+jJaE51olQa3nCMy6nWOM=
+		</data>
+		<key>Modules/twitter_login.swiftmodule/arm64.swiftmodule</key>
+		<data>
+		0VKBhAjfP6QYTNNZz+/YN1U+xsg=
+		</data>
 		<key>Modules/twitter_login.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
 		fI83c6XlPQX38x5cyHy6HsiwDLk=
 		</data>
 		<key>Modules/twitter_login.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		MbDNacotPJwhj6NNBXeipAxzmxU=
+		eogMdmwPuYUiASaPVJFcnKNn3E8=
 		</data>
 		<key>Modules/twitter_login.swiftmodule/x86_64.swiftdoc</key>
 		<data>
@@ -46,7 +70,7 @@
 		</data>
 		<key>Modules/twitter_login.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		MbDNacotPJwhj6NNBXeipAxzmxU=
+		eogMdmwPuYUiASaPVJFcnKNn3E8=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -62,7 +86,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Q6s6RKdoys/i4GnGBg7fhMRIeCzNjTiUHX5b7hyMLhQ=
+			mX8V2zcjZwXSCEYj+K2wDB/3510T2hkVuXZ5SqBos+4=
 			</data>
 		</dict>
 		<key>Headers/twitter_login-umbrella.h</key>
@@ -79,6 +103,20 @@
 			0wTwLhooP0WhqHNo8BdekWTY9Ejm/V9GkcV34nCSweQ=
 			</data>
 		</dict>
+		<key>Modules/twitter_login.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			qECCoEGjQzX+jTvS5QKdhNKeOV/20RqRaEa2qbg2Wdo=
+			</data>
+		</dict>
+		<key>Modules/twitter_login.swiftmodule/Project/arm64.swiftsourceinfo</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			qECCoEGjQzX+jTvS5QKdhNKeOV/20RqRaEa2qbg2Wdo=
+			</data>
+		</dict>
 		<key>Modules/twitter_login.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
@@ -93,6 +131,34 @@
 			Zun2+bu1JL1dwaMIXeYV8Uf6xROzpEIXj/WmrFPh1s0=
 			</data>
 		</dict>
+		<key>Modules/twitter_login.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			fx8Ezqp3yqfrDOJhl6XYN3VKbgzLCkYC2rYgTPr7u40=
+			</data>
+		</dict>
+		<key>Modules/twitter_login.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			lWrke9be7M48Sxc17YUOZss3oC+lNpGtFNX7IGF9Dpc=
+			</data>
+		</dict>
+		<key>Modules/twitter_login.swiftmodule/arm64.swiftdoc</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			fx8Ezqp3yqfrDOJhl6XYN3VKbgzLCkYC2rYgTPr7u40=
+			</data>
+		</dict>
+		<key>Modules/twitter_login.swiftmodule/arm64.swiftmodule</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			lWrke9be7M48Sxc17YUOZss3oC+lNpGtFNX7IGF9Dpc=
+			</data>
+		</dict>
 		<key>Modules/twitter_login.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
@@ -104,7 +170,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			qxKg6jvFo2YU8E6e+wT+BcmG8L+wT6uFayUiszeRARU=
+			XGIlydcZgijFhl44FTRPtSm+ubg0uOkXP0p3dXFgmus=
 			</data>
 		</dict>
 		<key>Modules/twitter_login.swiftmodule/x86_64.swiftdoc</key>
@@ -118,7 +184,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			qxKg6jvFo2YU8E6e+wT+BcmG8L+wT6uFayUiszeRARU=
+			XGIlydcZgijFhl44FTRPtSm+ubg0uOkXP0p3dXFgmus=
 			</data>
 		</dict>
 	</dict>

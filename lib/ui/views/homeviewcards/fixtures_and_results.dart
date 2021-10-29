@@ -6,6 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'package:fsproj/locator.dart';
 import 'package:fsproj/services/navigation_service.dart';
 import 'package:fsproj/ui/shared/constants/route_names.dart';
+import 'package:fsproj/ui/shared/ui_helpers.dart';
 import 'package:intl/intl.dart';
 
 import 'package:fsproj/ui/shared/shared_styles.dart';
@@ -60,15 +61,17 @@ class _FixturesCardWidget extends State<FixturesCardWidget> {
         },
         child: Container(
           width: 300,
-          height: 200,
-          color: Colors.black87,
+          height: 300,
+          color: Color.fromARGB(255, 28, 37, 51),
           child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                verticalSpaceSmall,
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   Text("Fixtures and Results", style: cardHeader),
                 ]),
+                verticalSpaceSmall,
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -86,7 +89,7 @@ class _FixturesCardWidget extends State<FixturesCardWidget> {
                   ),
                   child: Container(
                     height: 1.0,
-                    color: Colors.cyan,
+                    color: Color.fromARGB(255, 44, 179, 163),
                   ),
                 ),
                 Row(
@@ -103,7 +106,7 @@ class _FixturesCardWidget extends State<FixturesCardWidget> {
                         fixtureResult("West Ham", "15:00", "Leicester City"),
                         */
                 Container(
-                  height: 94,
+                  height: 200,
                   padding: const EdgeInsets.all(10),
                   child: fixtureListView(dayDate),
                 ),
@@ -161,8 +164,16 @@ class _FixturesCardWidget extends State<FixturesCardWidget> {
     int goalsHT = fixture['goals']['home'];
     int goalsAT = fixture['goals']['away'];
 
-    print("result" + homeTeam['name'] + awayTeam['name'] + goalsHT.toString());
+    print("Fixture/Result: " +
+        eventDate +
+        " - " +
+        homeTeam['name'] +
+        " : " +
+        awayTeam['name'] +
+        " - Goals: " +
+        goalsHT.toString());
     DateTime kickoffdt = DateTime.parse(eventDate);
+    print("kickOffDT: " + kickoffdt.toString());
     String kickOff = kickoffdt.toLocal().hour.toString() +
         ':' +
         kickoffdt.toLocal().minute.toString().padLeft(2, '0');
@@ -179,16 +190,30 @@ class _FixturesCardWidget extends State<FixturesCardWidget> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
-              width: 70,
-              child: Text(homeTeam['name'], style: cardStyleFixture),
+              width: 90,
+              height: 20,
+              child: Text(homeTeam['name'],
+                  style: cardStyleFixture, textAlign: TextAlign.right),
+            ),
+            Image.network(
+              homeTeam['logo'],
+              scale: 7,
             ),
             Container(
-              width: 30,
-              child: Text(scoreOrDate, style: cardStyleFixture),
+              width: 40,
+              height: 20,
+              child: Text(scoreOrDate,
+                  style: cardStyleFixture, textAlign: TextAlign.center),
+            ),
+            Image.network(
+              awayTeam['logo'],
+              scale: 7,
             ),
             Container(
-              width: 70,
-              child: Text(awayTeam['name'], style: cardStyleFixture),
+              width: 90,
+              height: 20,
+              child: Text(awayTeam['name'],
+                  style: cardStyleFixture, textAlign: TextAlign.left),
             ),
           ],
         ),
