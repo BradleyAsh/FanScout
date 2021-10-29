@@ -78,8 +78,8 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
   }
 
   StreamBuilder FixtureDetailsView(int fixtureId) {
-    //fixtureId = 157333;
-
+    // OVERRIDE
+    fixtureId = 800358;
     DateTime day = DateTime.now();
     String dayStart = DateFormat("y").format(day) +
         '-' +
@@ -97,7 +97,7 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
     // String homeOrAwayTeamField =
     // isHome ? 'homeTeam.team_name' : 'awayTeam.team_name';
 
-    print("Fixtureid" + fixtureId.toString());
+    print("Fixtureid: " + fixtureId.toString());
     Stream queryss = FirebaseFirestore.instance
         .collection('Lineups')
         .where('fixture_id', isEqualTo: fixtureId)
@@ -150,16 +150,17 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
     // String homeTeamFormation = homeTeam['formation'];
     // String homeTeamCoach = homeTeam['coach'];
     // String awayTeamCoach = awayTeam['coach'];
-
     Map<dynamic, dynamic> Team = lineUp['team'];
-    String Formation = Team['formation'];
+    String Formation = lineUp['formation'];
+    print("Team: " + Team['name']);
+    print("Formation: " + Formation);
 
     return Container(
       padding: EdgeInsets.all(0),
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
         // TeamFormationWidget(lineUp, "homeTeam"),
         // TeamFormationWidget(lineUp, 'awayTeam'),
-        TeamFormationWidget(lineUp, "Team"),
+        TeamFormationWidget(lineUp, 'Team'),
         TeamFormationWidget(lineUp, 'Team'),
       ]),
     );
@@ -168,8 +169,11 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
   Widget TeamFormationWidget(
       Map<dynamic, dynamic> lineUp, String homeOrAwayTeam) {
     bool isHome = homeOrAwayTeam == 'Team';
-    String formation = lineUp[homeOrAwayTeam]['formation'];
-    String manager = lineUp[homeOrAwayTeam]['coach'];
+    print("HomeorAwayTeam: ----- " + homeOrAwayTeam);
+    String formation = lineUp['formation'];
+    print("Formation ---- " + formation);
+    String manager = lineUp['coach']['name'];
+    print("Manager ---- " + manager);
     //print (lineUp[homeOrAwayTeam]['startXI'].where((e) => e['number'] == 29).toString());
     //print (formation.toString());
     int numRows = formation.allMatches("-").length +
