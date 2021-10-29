@@ -101,7 +101,7 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
     Stream queryss = FirebaseFirestore.instance
         .collection('Lineups')
         .where('fixture_id', isEqualTo: fixtureId)
-        .limit(1)
+        .limit(2)
         .snapshots();
 
     if (selectedSubHeading == 1) {
@@ -109,7 +109,7 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
       queryss = FirebaseFirestore.instance
           .collection('Lineups')
           .where('fixture_id', isEqualTo: fixtureId)
-          .limit(1)
+          .limit(2)
           .snapshots();
     } else if (selectedSubHeading == 2) {
       //Ratings
@@ -152,16 +152,22 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
     // String awayTeamCoach = awayTeam['coach'];
     Map<dynamic, dynamic> Team = lineUp['team'];
     String Formation = lineUp['formation'];
-    print("Team: " + Team['name']);
-    print("Formation: " + Formation);
+    int hteamId = Team['id'];
+    print("Team: " + Team.toString());
+    print("TeamId: " + hteamId.toString());
+
+    // print("Team1: " + Team.toString());
+    //  print("Formation: " + Formation);
 
     return Container(
       padding: EdgeInsets.all(0),
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
         // TeamFormationWidget(lineUp, "homeTeam"),
         // TeamFormationWidget(lineUp, 'awayTeam'),
-        TeamFormationWidget(lineUp, 'Team'),
-        TeamFormationWidget(lineUp, 'Team'),
+        if (hteamId == 72)
+          TeamFormationWidget(lineUp, 'Team')
+        else if (hteamId == 746)
+          TeamFormationWidget(lineUp, 'Team'),
       ]),
     );
   }
@@ -169,16 +175,16 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
   Widget TeamFormationWidget(
       Map<dynamic, dynamic> lineUp, String homeOrAwayTeam) {
     bool isHome = homeOrAwayTeam == 'Team';
-    print("HomeorAwayTeam: ----- " + homeOrAwayTeam);
+    // print("HomeorAwayTeam: ----- " + homeOrAwayTeam);
     String formation = lineUp['formation'];
-    print("Formation ---- " + formation);
+    // print("Formation ---- " + formation);
     String manager = lineUp['coach']['name'];
-    print("Manager ---- " + manager);
+    // print("Manager ---- " + manager);
     //print (lineUp[homeOrAwayTeam]['startXI'].where((e) => e['number'] == 29).toString());
     //print (formation.toString());
     int numRows = formation.allMatches("-").length +
         1; //Rows is goalie  e.g. 4-3-3 o 4-2-3-1
-    List<dynamic> lineUpList = lineUp[homeOrAwayTeam]['startXI'];
+    List<dynamic> lineUpList = lineUp['startXI'];
     List<dynamic> GoalKeeperList =
         lineUpList.where((p) => p['pos'] == "G").toList();
     List<dynamic> DefenderList =
@@ -193,9 +199,10 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
     final HalfPitchHeight = 200.0;
     final PitchWidth = 300.0;
     final formationHeightPos = 5.0;
+    //print("StartXI ---- " + lineUpList.toString());
+    // print("Defenders ---- " + DefenderList.toString());
 
-    List<String> formationRows =
-        lineUp[homeOrAwayTeam]['formation'].toString().split("-");
+    List<String> formationRows = lineUp['formation'].toString().split("-");
     bool midfieldSplit =
         (formationRows.length > 3) && int.parse(formationRows[2]) >= 2;
     bool forwardSplit =
@@ -298,7 +305,7 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
       columnWidgets.add(PositionRow(GoalKeeperList));
     }
 
-    Color pitchColour = Colors.green[400];
+    Color pitchColour = Color.fromARGB(255, 44, 179, 163);
 
     return Stack(children: [
       Container(
@@ -386,9 +393,9 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
   }
 
   Widget PositionWidget(var position) {
-    List<String> playFullName = position['player'].toString().split(" ");
+    List<String> playFullName = position['name'].toString().split(" ");
     String firstInitial =
-        playFullName.length > 1 ? position['player'][0] + ". " : "";
+        playFullName.length > 1 ? position['name'][0] + ". " : "";
     String firstName = playFullName.length > 1 ? playFullName.removeAt(0) : "";
     String playerName = firstInitial + playFullName.join(" ");
     return PlayerIcon(position['number'].toString(), playerName);
@@ -417,7 +424,8 @@ Widget PlayerIcon(String displayText, String playername) {
   return Column(mainAxisAlignment: MainAxisAlignment.start, children: [
     Stack(
       children: <Widget>[
-        new Icon(Icons.brightness_1, size: 25.0, color: Colors.green[800]),
+        new Icon(Icons.brightness_1,
+            size: 25.0, color: Color.fromARGB(255, 44, 179, 163)),
         new Positioned(
             top: 3.0,
             right: 7.0,
@@ -425,6 +433,7 @@ Widget PlayerIcon(String displayText, String playername) {
               child: new Text(
                 displayText,
                 style: playerIconTextStyle,
+                textAlign: TextAlign.center,
               ),
             )),
       ],
