@@ -169,7 +169,7 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
     print("Fixture Team: " + fixtureteamId.toString());
     print("HomeTeamId: " + home.toString() + " AwayTeamId: " + away.toString());
 
-    if (fixtureteamId == home) {
+    if (fixtureteamId == away) {
       return Container(
         padding: EdgeInsets.all(0),
         child: Column(
@@ -177,7 +177,7 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
             children: [TeamFormationWidget(lineUp, 'Home')]),
       );
     }
-    if (fixtureteamId == away) {
+    if (fixtureteamId == home) {
       return Container(
         padding: EdgeInsets.all(0),
         child: Column(

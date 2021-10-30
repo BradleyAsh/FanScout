@@ -134,7 +134,7 @@ class _NextMatchWidget extends State<NextMatchWidget> {
 
     String fixtureHeader =
         league['name'] + ' - ' + kickOffDate + ' - ' + kickOff;
-
+    print('Fixture : ' + fixtureHeader);
     return Container(
       padding: EdgeInsets.all(0),
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
