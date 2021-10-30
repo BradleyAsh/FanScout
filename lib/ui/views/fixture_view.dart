@@ -87,6 +87,12 @@ class FixtureView extends StatelessWidget {
     Map<dynamic, dynamic> venue = fixture['fixture']['venue'];
     String referee = fixture['fixture']['referee'] ?? "";
     int fixtureId = fixture['fixture']['id'];
+    int homeId = homeTeam['id'];
+    int awayId = awayTeam['id'];
+    print('HOMEID --- ' +
+        homeId.toString() +
+        'AWAYID ----- ' +
+        awayId.toString());
 
     DateTime today = DateTime.now();
     DateTime kickoffdt = DateTime.parse(eventDate);
@@ -148,7 +154,11 @@ class FixtureView extends StatelessWidget {
           ],
         ),
         verticalSpaceMedium,
-        FixtureDetailWidget(fixtureId: fixtureId),
+        FixtureDetailWidget(
+          fixtureId: fixtureId,
+          homeId: homeId,
+          awayId: awayId,
+        )
       ]),
     );
   }

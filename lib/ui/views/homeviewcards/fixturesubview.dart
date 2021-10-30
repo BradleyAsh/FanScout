@@ -11,8 +11,12 @@ import 'package:fsproj/ui/shared/shared_styles.dart';
 
 class FixtureDetailWidget extends StatefulWidget {
   final fixtureId;
+  final int homeId;
+  final int awayId;
 
-  FixtureDetailWidget({Key key, @required this.fixtureId}) : super(key: key);
+  FixtureDetailWidget(
+      {Key key, @required this.fixtureId, this.homeId, this.awayId})
+      : super(key: key);
 
   @override
   _FixtureDetailWidget createState() => _FixtureDetailWidget();
@@ -67,19 +71,27 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
                   ),
                 ),
                 Container(
-                  height: 414,
-                  padding: const EdgeInsets.all(0.0),
-                  child: FixtureDetailsView(widget.fixtureId),
-                ),
+                    height: 414,
+                    padding: const EdgeInsets.all(0.0),
+                    child: FixtureDetailsView(
+                        widget.fixtureId, widget.homeId, widget.awayId)),
               ]),
         ),
       ),
     );
   }
 
-  StreamBuilder FixtureDetailsView(int fixtureId) {
+  StreamBuilder FixtureDetailsView(int fixtureId, int homeId, int awayId) {
+    //  print('PASSEDHOMEID: __ ___ ___' + homeId.toString());
+    // print('PASSEDHOMEID: __ ___ ___' + awayId.toString());
+    int Hid = homeId;
+    int Aid = awayId;
+
     // OVERRIDE
-    fixtureId = 800358;
+    // fixtureId = 800355;
+    //  Hid = 48;
+    // Aid = 50;
+
     DateTime day = DateTime.now();
     String dayStart = DateFormat("y").format(day) +
         '-' +
@@ -129,9 +141,7 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
           default:
             return new ListView(
               children: snapshot.data.docs.map((DocumentSnapshot document) {
-                return LineupDetails(
-                  document.data(),
-                );
+                return LineupDetails(document.data(), Hid, Aid);
               }).toList(),
             );
         }
@@ -139,7 +149,7 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
     );
   }
 
-  Widget LineupDetails(Map<dynamic, dynamic> lineUp) {
+  Widget LineupDetails(Map<dynamic, dynamic> lineUp, int home, int away) {
     final NavigationService _navigationService = locator<NavigationService>();
 
     //print("Fixture Team ID"+ fixture['homeTeam']['team_id'].toString());
@@ -152,29 +162,34 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
     // String awayTeamCoach = awayTeam['coach'];
     Map<dynamic, dynamic> Team = lineUp['team'];
     String Formation = lineUp['formation'];
-    int hteamId = Team['id'];
+    int hteamId = home;
+    int ateamId = away;
+    int fixtureteamId = lineUp['team']['id'];
     print("Team: " + Team.toString());
-    print("TeamId: " + hteamId.toString());
+    print("Fixture Team: " + fixtureteamId.toString());
+    print("HomeTeamId: " + home.toString() + " AwayTeamId: " + away.toString());
 
-    // print("Team1: " + Team.toString());
-    //  print("Formation: " + Formation);
-
-    return Container(
-      padding: EdgeInsets.all(0),
-      child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-        // TeamFormationWidget(lineUp, "homeTeam"),
-        // TeamFormationWidget(lineUp, 'awayTeam'),
-        if (hteamId == 72)
-          TeamFormationWidget(lineUp, 'Team')
-        else if (hteamId == 746)
-          TeamFormationWidget(lineUp, 'Team'),
-      ]),
-    );
+    if (fixtureteamId == home) {
+      return Container(
+        padding: EdgeInsets.all(0),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [TeamFormationWidget(lineUp, 'Home')]),
+      );
+    }
+    if (fixtureteamId == away) {
+      return Container(
+        padding: EdgeInsets.all(0),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [TeamFormationWidget(lineUp, 'Away')]),
+      );
+    }
   }
 
   Widget TeamFormationWidget(
       Map<dynamic, dynamic> lineUp, String homeOrAwayTeam) {
-    bool isHome = homeOrAwayTeam == 'Team';
+    bool isHome = homeOrAwayTeam == 'Home';
     // print("HomeorAwayTeam: ----- " + homeOrAwayTeam);
     String formation = lineUp['formation'];
     // print("Formation ---- " + formation);
