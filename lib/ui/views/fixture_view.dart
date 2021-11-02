@@ -109,7 +109,7 @@ class FixtureView extends StatelessWidget {
         Row(
           children: <Widget>[
             Expanded(
-              flex: 8, // 20%
+              flex: 8,
               child: Container(
                 child: Text(
                   homeTeamName,
@@ -119,7 +119,7 @@ class FixtureView extends StatelessWidget {
               ),
             ),
             Expanded(
-              flex: 2, // 60%
+              flex: 2,
               child: Container(
                   child: Text(
                 ' vs ',
@@ -128,7 +128,7 @@ class FixtureView extends StatelessWidget {
               )),
             ),
             Expanded(
-              flex: 8, // 20%
+              flex: 8,
               child: Container(
                   child: Text(
                 awayTeamName,
@@ -138,42 +138,48 @@ class FixtureView extends StatelessWidget {
             )
           ],
         ),
-        verticalSpaceSmall,
         Row(
-          // complete children as expanded sections
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Image.network(
-              homeTeam['logo'],
-              scale: 2,
+            Expanded(
+              flex: 3,
+              child: Container(
+                  padding: const EdgeInsets.all(1.0),
+                  child: Image.network(
+                    homeTeam['logo'],
+                    scale: 2,
+                  )),
             ),
-            SizedBox(width: 20),
-            SizedBox(
-              width: 100,
-              child: Column(
-                children: [
-                  Text(venue['name'],
-                      style: cardFixtureText,
-                      softWrap: true,
-                      textAlign: TextAlign.center),
-                  Text(kickOffDate,
-                      style: cardFixtureText, textAlign: TextAlign.center),
-                  Text(kickOff,
-                      style: cardFixtureText, textAlign: TextAlign.center),
-                  Text(referee,
-                      style: cardFixtureText, textAlign: TextAlign.center),
-                ],
+            Expanded(
+              flex: 4,
+              child: Container(
+                child: Column(
+                  children: [
+                    Text(venue['name'],
+                        style: cardFixtureText,
+                        softWrap: true,
+                        textAlign: TextAlign.center),
+                    Text(kickOffDate,
+                        style: cardFixtureText, textAlign: TextAlign.center),
+                    Text(kickOff,
+                        style: cardFixtureText, textAlign: TextAlign.center),
+                    Text(referee,
+                        style: cardFixtureText, textAlign: TextAlign.center),
+                  ],
+                ),
               ),
             ),
-            SizedBox(width: 20),
-            Image.network(
-              awayTeam['logo'],
-              scale: 2,
+            Expanded(
+              flex: 3,
+              child: Container(
+                  padding: const EdgeInsets.all(1.0),
+                  child: Image.network(
+                    awayTeam['logo'],
+                    scale: 2,
+                  )),
             ),
           ],
         ),
-        verticalSpaceMedium,
+        verticalSpaceSmall,
         FixtureDetailWidget(
           fixtureId: fixtureId,
           homeId: homeId,
