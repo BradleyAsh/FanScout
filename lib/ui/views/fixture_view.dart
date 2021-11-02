@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:fsproj/ui/shared/common_widgets/avatar.dart';
 import 'package:fsproj/ui/shared/constants/keys.dart';
@@ -30,8 +32,6 @@ class FixtureView extends StatelessWidget {
     final user = authService.currentUser; //Provider.of<User>(context);
 
     final fixture = ModalRoute.of(context).settings.arguments;
-    //final name = ModalRoute.of(context).settings.name;
-    //print("FixtureView: " + fixture.toString());
 
     return ViewModelBuilder<ProfileViewModel>.reactive(
         viewModelBuilder: () => ProfileViewModel(),
@@ -43,34 +43,28 @@ class FixtureView extends StatelessWidget {
             ));
   }
 
+// Body
   Widget _buildFixtureInfo(model, AUser user, fixture) {
-    //print("buildFixtureInfo Team ID: " + fixture.toString());
-
     return Container(
+      //background container
       color: Color.fromARGB(255, 10, 22, 40),
-      padding: const EdgeInsets.all(6),
+      padding: const EdgeInsets.all(2),
       child: Card(
         shape: cardShapeBorder,
         child: InkWell(
-          splashColor: Colors.pink,
+          // splashColor: Colors.pink,
           onTap: () {
             print('Card tapped.');
           },
           child: Container(
-            padding: const EdgeInsets.all(10),
+            // Main Container
+            // padding: const EdgeInsets.all(10),
             color: Color.fromARGB(255, 28, 37, 51),
-            child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  // Row(
-                  //  mainAxisAlignment: MainAxisAlignment.center,
-                  //children: [Text("Countdown", style: cardHeader)],
-                  // ),
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    thisFixture(fixture),
-                  ]),
-                ]),
+            child: Column(children: [
+              Row(children: [
+                Expanded(flex: 10, child: thisFixture(fixture)),
+              ]),
+            ]),
           ),
         ),
       ),
@@ -89,10 +83,6 @@ class FixtureView extends StatelessWidget {
     int fixtureId = fixture['fixture']['id'];
     int homeId = homeTeam['id'];
     int awayId = awayTeam['id'];
-    print('HOMEID --- ' +
-        homeId.toString() +
-        'AWAYID ----- ' +
-        awayId.toString());
 
     DateTime today = DateTime.now();
     DateTime kickoffdt = DateTime.parse(eventDate);
@@ -114,13 +104,43 @@ class FixtureView extends StatelessWidget {
     String fixtureHeader = homeTeamName + ' vs ' + awayTeamName;
 
     return Container(
-      padding: EdgeInsets.all(0),
-      child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text(fixtureHeader, textAlign: TextAlign.center, style: cardHeader),
-        ]),
+      child: Column(children: <Widget>[
         verticalSpaceSmall,
         Row(
+          children: <Widget>[
+            Expanded(
+              flex: 8, // 20%
+              child: Container(
+                child: Text(
+                  homeTeamName,
+                  textAlign: TextAlign.right,
+                  style: cardHeader,
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 2, // 60%
+              child: Container(
+                  child: Text(
+                ' vs ',
+                textAlign: TextAlign.center,
+                style: cardHeader,
+              )),
+            ),
+            Expanded(
+              flex: 8, // 20%
+              child: Container(
+                  child: Text(
+                awayTeamName,
+                textAlign: TextAlign.left,
+                style: cardHeader,
+              )),
+            )
+          ],
+        ),
+        verticalSpaceSmall,
+        Row(
+          // complete children as expanded sections
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
