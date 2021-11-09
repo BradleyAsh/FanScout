@@ -83,6 +83,9 @@ class FixtureView extends StatelessWidget {
     int fixtureId = fixture['fixture']['id'];
     int homeId = homeTeam['id'];
     int awayId = awayTeam['id'];
+    int homegoals = fixture['goals']['home'];
+    int awaygoals = fixture['goals']['away'];
+    print("Score - " + homegoals.toString() + "-" + awaygoals.toString());
 
     DateTime today = DateTime.now();
     DateTime kickoffdt = DateTime.parse(eventDate);
@@ -101,91 +104,168 @@ class FixtureView extends StatelessWidget {
     String homeTeamName = homeTeam['name'].toString();
     String awayTeamName = awayTeam['name'].toString();
 
-    String fixtureHeader = homeTeamName + ' vs ' + awayTeamName;
-
-    return Container(
-      child: Column(children: <Widget>[
-        verticalSpaceSmall,
-        Row(
-          children: <Widget>[
-            Expanded(
-              flex: 8,
-              child: Container(
-                child: Text(
-                  homeTeamName,
-                  textAlign: TextAlign.right,
+    // String fixtureHeader = homeTeamName + ' vs ' + awayTeamName;
+    if (homegoals == null) {
+      return Container(
+        child: Column(children: <Widget>[
+          verticalSpaceSmall,
+          Row(
+            children: <Widget>[
+              Expanded(
+                flex: 8,
+                child: Container(
+                  child: Text(
+                    homeTeamName,
+                    textAlign: TextAlign.right,
+                    style: cardHeader,
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 2,
+                child: Container(
+                    child: Text(
+                  ' vs ',
+                  textAlign: TextAlign.center,
                   style: cardHeader,
+                )),
+              ),
+              Expanded(
+                flex: 8,
+                child: Container(
+                    child: Text(
+                  awayTeamName,
+                  textAlign: TextAlign.left,
+                  style: cardHeader,
+                )),
+              )
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                flex: 3,
+                child: Container(
+                    padding: const EdgeInsets.all(1.0),
+                    child: Image.network(
+                      homeTeam['logo'],
+                      scale: 2,
+                    )),
+              ),
+              Expanded(
+                flex: 4,
+                child: Container(
+                  child: Column(
+                    children: [
+                      Text(venue['name'],
+                          style: cardFixtureText,
+                          softWrap: true,
+                          textAlign: TextAlign.center),
+                      Text(kickOffDate,
+                          style: cardFixtureText, textAlign: TextAlign.center),
+                      Text(kickOff,
+                          style: cardFixtureText, textAlign: TextAlign.center),
+                      Text(referee,
+                          style: cardFixtureText, textAlign: TextAlign.center),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Expanded(
-              flex: 2,
-              child: Container(
+              Expanded(
+                flex: 3,
+                child: Container(
+                    padding: const EdgeInsets.all(1.0),
+                    child: Image.network(
+                      awayTeam['logo'],
+                      scale: 2,
+                    )),
+              ),
+            ],
+          ),
+          verticalSpaceSmall,
+          FixtureDetailWidget(
+            fixtureId: fixtureId,
+            homeId: homeId,
+            awayId: awayId,
+          )
+        ]),
+      );
+    } // if
+    else {
+      return Container(
+        child: Column(children: <Widget>[
+          verticalSpaceSmall,
+          Row(
+            children: <Widget>[
+              Expanded(
+                flex: 8,
+                child: Container(
                   child: Text(
-                ' vs ',
-                textAlign: TextAlign.center,
-                style: cardHeader,
-              )),
-            ),
-            Expanded(
-              flex: 8,
-              child: Container(
-                  child: Text(
-                awayTeamName,
-                textAlign: TextAlign.left,
-                style: cardHeader,
-              )),
-            )
-          ],
-        ),
-        Row(
-          children: <Widget>[
-            Expanded(
-              flex: 3,
-              child: Container(
-                  padding: const EdgeInsets.all(1.0),
-                  child: Image.network(
-                    homeTeam['logo'],
-                    scale: 2,
-                  )),
-            ),
-            Expanded(
-              flex: 4,
-              child: Container(
-                child: Column(
-                  children: [
-                    Text(venue['name'],
-                        style: cardFixtureText,
-                        softWrap: true,
-                        textAlign: TextAlign.center),
-                    Text(kickOffDate,
-                        style: cardFixtureText, textAlign: TextAlign.center),
-                    Text(kickOff,
-                        style: cardFixtureText, textAlign: TextAlign.center),
-                    Text(referee,
-                        style: cardFixtureText, textAlign: TextAlign.center),
-                  ],
+                    homeTeamName,
+                    textAlign: TextAlign.right,
+                    style: cardHeader,
+                  ),
                 ),
               ),
-            ),
-            Expanded(
-              flex: 3,
-              child: Container(
-                  padding: const EdgeInsets.all(1.0),
-                  child: Image.network(
-                    awayTeam['logo'],
-                    scale: 2,
-                  )),
-            ),
-          ],
-        ),
-        verticalSpaceSmall,
-        FixtureDetailWidget(
-          fixtureId: fixtureId,
-          homeId: homeId,
-          awayId: awayId,
-        )
-      ]),
-    );
+              Expanded(
+                flex: 2,
+                child: Container(
+                    child: Text(
+                  ' vs ',
+                  textAlign: TextAlign.center,
+                  style: cardHeader,
+                )),
+              ),
+              Expanded(
+                flex: 8,
+                child: Container(
+                    child: Text(
+                  awayTeamName,
+                  textAlign: TextAlign.left,
+                  style: cardHeader,
+                )),
+              )
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                flex: 3,
+                child: Container(
+                    padding: const EdgeInsets.all(1.0),
+                    child: Image.network(
+                      homeTeam['logo'],
+                      scale: 2,
+                    )),
+              ),
+              Expanded(
+                flex: 4,
+                child: Container(
+                    child: Text(
+                  homegoals.toString() + '-' + awaygoals.toString(),
+                  textAlign: TextAlign.center,
+                  style: largeScore,
+                )),
+              ),
+              Expanded(
+                flex: 3,
+                child: Container(
+                    padding: const EdgeInsets.all(1.0),
+                    child: Image.network(
+                      awayTeam['logo'],
+                      scale: 2,
+                    )),
+              ),
+            ],
+          ),
+          verticalSpaceSmall,
+          FixtureDetailWidget(
+            fixtureId: fixtureId,
+            homeId: homeId,
+            awayId: awayId,
+          )
+        ]),
+      );
+    }
   }
 }

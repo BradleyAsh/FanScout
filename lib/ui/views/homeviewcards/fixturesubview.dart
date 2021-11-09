@@ -213,9 +213,9 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
     Map<dynamic, dynamic> Team = lineUp['team'];
     String Formation = lineUp['formation'];
     int fixtureteamId = lineUp['team']['id'];
-    print("Team: " + Team.toString());
-    print("Fixture Team: " + fixtureteamId.toString());
-    print("HomeTeamId: " + teamid.toString());
+    // print("Team: " + Team.toString());
+    // print("Fixture Team: " + fixtureteamId.toString());
+    // print("HomeTeamId: " + teamid.toString());
 
     if (fixtureteamId == teamid) {
       return Container(
@@ -250,10 +250,10 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
     final PitchWidth = 300.0;
     final formationHeightPos = 5.0;
     //print("StartXI ---- " + lineUpList.toString());
-    print("Goalkeeper ---- " + GoalKeeperList.toString());
-    print("Defenders ---- " + DefenderList.toString());
-    print("Midfielders ---- " + MidfieldList.toString());
-    print("Forwards ---- " + ForwardList.toString());
+    // print("Goalkeeper ---- " + GoalKeeperList.toString());
+    // print("Defenders ---- " + DefenderList.toString());
+    // print("Midfielders ---- " + MidfieldList.toString());
+    // print("Forwards ---- " + ForwardList.toString());
 
     List<String> formationRows = lineUp['formation'].toString().split("-");
     bool midfieldSplit =

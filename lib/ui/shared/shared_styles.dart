@@ -30,6 +30,8 @@ const TextStyle cardStyleToday =
     const TextStyle(fontSize: 8, color: Colors.white);
 const TextStyle cardHeader = const TextStyle(
     fontSize: 14, color: Colors.white, fontWeight: FontWeight.bold);
+const TextStyle largeScore = const TextStyle(
+    fontSize: 25, color: Colors.white, fontWeight: FontWeight.bold);
 const TextStyle cardHeaderHomwAwayHighlight = const TextStyle(
     fontSize: 14, color: Colors.white, fontWeight: FontWeight.bold);
 const TextStyle cardHeaderHomwAway = const TextStyle(
