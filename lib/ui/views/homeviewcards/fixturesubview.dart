@@ -31,10 +31,6 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
     final authService = locator<AuthenticationService>();
     final user = authService.currentUser; //Provider.of<User>(context);
 
-    //String myTeam = user.team;
-    //var fixtureList = model.GetMyTeamNextFixture(user.team);
-    //print ("leagueid:" + fixtureList.toString());
-
     return Card(
       shape: cardShapeBorder,
       child: InkWell(
@@ -71,26 +67,27 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
                   ),
                 ),
                 Container(
-                    height: 414,
-                    padding: const EdgeInsets.all(0.0),
-                    child: FixtureDetailsView(
-                        widget.fixtureId, widget.homeId, widget.awayId)),
+                    height: 200,
+                    // padding: const EdgeInsets.all(0.0),
+                    child: HomeFixtureDetailsView(
+                        widget.fixtureId, widget.homeId)),
+                Container(
+                    height: 200,
+                    // padding: const EdgeInsets.all(0.0),
+                    child: AwayFixtureDetailsView(
+                        widget.fixtureId, widget.awayId)),
               ]),
         ),
       ),
     );
   }
 
-  StreamBuilder FixtureDetailsView(int fixtureId, int homeId, int awayId) {
-    //  print('PASSEDHOMEID: __ ___ ___' + homeId.toString());
-    // print('PASSEDHOMEID: __ ___ ___' + awayId.toString());
-    int Hid = homeId;
-    int Aid = awayId;
-
-    // OVERRIDE
-    // fixtureId = 800355;
-    //  Hid = 48;
-    // Aid = 50;
+  StreamBuilder HomeFixtureDetailsView(int fixtureId, int homeId) {
+    print("Fixture detail widget called for fixture - " +
+        fixtureId.toString() +
+        " Home team - " +
+        homeId.toString() +
+        " Away team - ");
 
     DateTime day = DateTime.now();
     String dayStart = DateFormat("y").format(day) +
@@ -106,22 +103,21 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
         '-' +
         DateFormat("d").format(day.add(Duration(days: 14))).padLeft(2, '0') +
         'T23:59:59';
-    // String homeOrAwayTeamField =
-    // isHome ? 'homeTeam.team_name' : 'awayTeam.team_name';
-
-    print("Fixtureid: " + fixtureId.toString());
-    Stream queryss = FirebaseFirestore.instance
+//Lineups Queried by fixture ID limited to two results
+    Stream homequery = FirebaseFirestore.instance
         .collection('Lineups')
         .where('fixture_id', isEqualTo: fixtureId)
-        .limit(2)
+        .where('team.id', isEqualTo: homeId)
+        .limit(1)
         .snapshots();
 
     if (selectedSubHeading == 1) {
       //Lineup
-      queryss = FirebaseFirestore.instance
+      homequery = FirebaseFirestore.instance
           .collection('Lineups')
           .where('fixture_id', isEqualTo: fixtureId)
-          .limit(2)
+          .where('team.id', isEqualTo: homeId)
+          .limit(1)
           .snapshots();
     } else if (selectedSubHeading == 2) {
       //Ratings
@@ -132,7 +128,7 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
     }
 
     return StreamBuilder<QuerySnapshot>(
-      stream: queryss,
+      stream: homequery,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) return new Text('Error: ${snapshot.error}');
         switch (snapshot.connectionState) {
@@ -141,7 +137,7 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
           default:
             return new ListView(
               children: snapshot.data.docs.map((DocumentSnapshot document) {
-                return LineupDetails(document.data(), Hid, Aid);
+                return LineupDetails(document.data(), homeId, "home");
               }).toList(),
             );
         }
@@ -149,54 +145,93 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
     );
   }
 
-  Widget LineupDetails(Map<dynamic, dynamic> lineUp, int home, int away) {
+  StreamBuilder AwayFixtureDetailsView(int fixtureId, int awayId) {
+    print("Fixture detail widget called for fixture - " +
+        fixtureId.toString() +
+        " Home team - " +
+        " Away team - " +
+        awayId.toString());
+
+    DateTime day = DateTime.now();
+    String dayStart = DateFormat("y").format(day) +
+        '-' +
+        DateFormat("M").format(day).padLeft(2, '0') +
+        '-' +
+        DateFormat("d").format(day).padLeft(2, '0') +
+        'T' +
+        DateFormat("Hms").format(day.add(Duration(hours: -1)));
+    String dayEnd = DateFormat("y").format(day.add(Duration(days: 14))) +
+        '-' +
+        DateFormat("M").format(day.add(Duration(days: 14))).padLeft(2, '0') +
+        '-' +
+        DateFormat("d").format(day.add(Duration(days: 14))).padLeft(2, '0') +
+        'T23:59:59';
+//Lineups Queried by fixture ID limited to two results
+    Stream homequery = FirebaseFirestore.instance
+        .collection('Lineups')
+        .where('fixture_id', isEqualTo: fixtureId)
+        .where('team.id', isEqualTo: awayId)
+        .limit(1)
+        .snapshots();
+
+    if (selectedSubHeading == 1) {
+      //Lineup
+      homequery = FirebaseFirestore.instance
+          .collection('Lineups')
+          .where('fixture_id', isEqualTo: fixtureId)
+          .where('team.id', isEqualTo: awayId)
+          .limit(1)
+          .snapshots();
+    } else if (selectedSubHeading == 2) {
+      //Ratings
+    } else if (selectedSubHeading == 3) {
+      //Stats
+    } else if (selectedSubHeading == 4) {
+      //News
+    }
+
+    return StreamBuilder<QuerySnapshot>(
+      stream: homequery,
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) return new Text('Error: ${snapshot.error}');
+        switch (snapshot.connectionState) {
+          case ConnectionState.waiting:
+            return new Text('Loading...');
+          default:
+            return new ListView(
+              children: snapshot.data.docs.map((DocumentSnapshot document) {
+                return LineupDetails(document.data(), awayId, "away");
+              }).toList(),
+            );
+        }
+      },
+    );
+  }
+
+  Widget LineupDetails(Map<dynamic, dynamic> lineUp, int teamid, homeaway) {
     final NavigationService _navigationService = locator<NavigationService>();
-
-    //print("Fixture Team ID"+ fixture['homeTeam']['team_id'].toString());
-
-    // Map<dynamic, dynamic> homeTeam = lineUp['homeTeam'];
-    // Map<dynamic, dynamic> awayTeam = lineUp['awayTeam'];
-    // String awayTeamFormation = awayTeam['formation'];
-    // String homeTeamFormation = homeTeam['formation'];
-    // String homeTeamCoach = homeTeam['coach'];
-    // String awayTeamCoach = awayTeam['coach'];
     Map<dynamic, dynamic> Team = lineUp['team'];
     String Formation = lineUp['formation'];
-    int hteamId = home;
-    int ateamId = away;
     int fixtureteamId = lineUp['team']['id'];
     print("Team: " + Team.toString());
     print("Fixture Team: " + fixtureteamId.toString());
-    print("HomeTeamId: " + home.toString() + " AwayTeamId: " + away.toString());
+    print("HomeTeamId: " + teamid.toString());
 
-    if (fixtureteamId == away) {
+    if (fixtureteamId == teamid) {
       return Container(
         padding: EdgeInsets.all(0),
         child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
-            children: [TeamFormationWidget(lineUp, 'Home')]),
-      );
-    }
-    if (fixtureteamId == home) {
-      return Container(
-        padding: EdgeInsets.all(0),
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [TeamFormationWidget(lineUp, 'Away')]),
+            children: [TeamFormationWidget(lineUp, homeaway)]),
       );
     }
   }
 
   Widget TeamFormationWidget(
       Map<dynamic, dynamic> lineUp, String homeOrAwayTeam) {
-    bool isHome = homeOrAwayTeam == 'Home';
-    // print("HomeorAwayTeam: ----- " + homeOrAwayTeam);
+    bool isHome = homeOrAwayTeam == 'home';
     String formation = lineUp['formation'];
-    // print("Formation ---- " + formation);
     String manager = lineUp['coach']['name'];
-    // print("Manager ---- " + manager);
-    //print (lineUp[homeOrAwayTeam]['startXI'].where((e) => e['number'] == 29).toString());
-    //print (formation.toString());
     int numRows = formation.allMatches("-").length +
         1; //Rows is goalie  e.g. 4-3-3 o 4-2-3-1
     List<dynamic> lineUpList = lineUp['startXI'];
@@ -215,7 +250,10 @@ class _FixtureDetailWidget extends State<FixtureDetailWidget> {
     final PitchWidth = 300.0;
     final formationHeightPos = 5.0;
     //print("StartXI ---- " + lineUpList.toString());
-    // print("Defenders ---- " + DefenderList.toString());
+    print("Goalkeeper ---- " + GoalKeeperList.toString());
+    print("Defenders ---- " + DefenderList.toString());
+    print("Midfielders ---- " + MidfieldList.toString());
+    print("Forwards ---- " + ForwardList.toString());
 
     List<String> formationRows = lineUp['formation'].toString().split("-");
     bool midfieldSplit =
